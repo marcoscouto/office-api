@@ -32,8 +32,10 @@ public class UserService {
         return userRepository.save(updateDataUser(user, userUpdate));
     }
 
-    public void delete(Long id){
-        if(findById(id) != null) userRepository.deleteById(id);
+    public boolean delete(Long id){
+        if(findById(id) == null) return false;
+        userRepository.deleteById(id);
+        return true;
     }
 
     private User updateDataUser(User user, User newUser){

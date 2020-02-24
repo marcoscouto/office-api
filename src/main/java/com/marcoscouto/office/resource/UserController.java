@@ -1,0 +1,52 @@
+package com.marcoscouto.office.resource;
+
+import com.marcoscouto.office.domain.User;
+import com.marcoscouto.office.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping(value = "")
+@CrossOrigin
+public class UserController {
+
+    @Autowired
+    private UserService userService;
+
+    @GetMapping(value = "/list")
+    public ResponseEntity<List<User>> findAll(){
+        List<User> response = userService.findAll();
+        if(response.isEmpty()) return ResponseEntity.notFound().build();
+        return ResponseEntity.ok().body(response);
+    }
+
+    @PostMapping(value = "/create")
+    public ResponseEntity<User> save(@RequestBody User user){
+        User response = userService.save(user);
+        return ResponseEntity.ok().body(response);
+    }
+
+    @PutMapping(value = "/update/{id}")
+    public ResponseEntity<User> update(@PathVariable Long id, @RequestBody User user){
+        User response = userService.update(id, user);
+        if(response == null) return ResponseEntity.notFound().build();
+        return ResponseEntity.ok().body(response);
+    }
+
+    @DeleteMapping(value = "/delete/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+        boolean wasDeleted = userService.delete(id);
+        if(wasDeleted)
+            return ResponseEntity.ok().build();
+        return ResponseEntity.notFound().build();
+
+    }
+
+
+
+
+
+}
