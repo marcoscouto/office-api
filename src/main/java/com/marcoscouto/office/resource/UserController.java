@@ -23,6 +23,13 @@ public class UserController {
         return ResponseEntity.ok().body(response);
     }
 
+    @GetMapping(value = "/user/{id}")
+    public ResponseEntity<User> findById(Long id){
+        User response = userService.findById(id);
+        if(response == null) return null;
+        return ResponseEntity.ok().body(response);
+    }
+
     @PostMapping(value = "/create")
     public ResponseEntity<User> save(@RequestBody User user){
         User response = userService.save(user);
