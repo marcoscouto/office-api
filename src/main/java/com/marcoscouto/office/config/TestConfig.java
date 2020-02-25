@@ -19,13 +19,17 @@ public class TestConfig implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        List<User> users = new ArrayList<>();
+        if (userRepository.findAll().isEmpty() == true) {
 
-        users.add(new User(null, "John", 29, "Java Corp"));
-        users.add(new User(null, "Marie", 24, "PHP Corp"));
-        users.add(new User(null, "Paul", 42, "Cobol Corp"));
+            List<User> users = new ArrayList<>();
 
-        userRepository.saveAll(users);
+            users.add(new User(null, "John", 29, "Java Corp"));
+            users.add(new User(null, "Marie", 24, "PHP Corp"));
+            users.add(new User(null, "Paul", 42, "Cobol Corp"));
+
+            userRepository.saveAll(users);
+
+        }
 
     }
 }
