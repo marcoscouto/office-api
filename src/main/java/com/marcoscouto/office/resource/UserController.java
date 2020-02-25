@@ -1,6 +1,7 @@
 package com.marcoscouto.office.resource;
 
 import com.marcoscouto.office.domain.User;
+import com.marcoscouto.office.services.DBService;
 import com.marcoscouto.office.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -52,7 +53,11 @@ public class UserController {
 
     }
 
-
+    @GetMapping(value = "/refresh")
+    public ResponseEntity<Void> refreshDatabase(){
+        DBService.populateDatabase();
+        return ResponseEntity.ok().build();
+    }
 
 
 
