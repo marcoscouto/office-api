@@ -5,6 +5,7 @@ import com.marcoscouto.office.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -43,6 +44,19 @@ public class UserService {
         if(newUser.getAge() == null) user.setAge(newUser.getAge());
         if(newUser.getOffice() == null || newUser.getOffice() != "") user.setOffice(newUser.getOffice());
         return user;
+    }
+
+    public void refreshDatabase(){
+        userRepository.deleteAll();
+
+        List<User> users = new ArrayList<>();
+
+        users.add(new User(null, "John", 29, "Java Corp"));
+        users.add(new User(null, "Ringo", 24, "Python Corp"));
+        users.add(new User(null, "Paul", 42, "Cobol Corp"));
+        users.add(new User(null, "George", 42, "PHP Corp"));
+
+        userRepository.saveAll(users);
     }
 
 }
