@@ -40,9 +40,9 @@ public class UserService {
     }
 
     private User updateDataUser(User user, User newUser){
-        if(newUser.getName() == null || newUser.getName() != "") user.setName(newUser.getName());
-        if(newUser.getAge() == null) user.setAge(newUser.getAge());
-        if(newUser.getOffice() == null || newUser.getOffice() != "") user.setOffice(newUser.getOffice());
+        if(newUser.getName() != null || newUser.getName() != "") user.setName(newUser.getName());
+        if(newUser.getAge() != null) user.setAge(newUser.getAge());
+        if(newUser.getOffice() != null || newUser.getOffice() != "") user.setOffice(newUser.getOffice());
         return user;
     }
 
