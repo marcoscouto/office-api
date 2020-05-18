@@ -39,7 +39,6 @@ public class UserController {
     @PutMapping(value = "/update/{id}")
     public ResponseEntity<User> update(@PathVariable UUID id, @RequestBody User user) {
         User response = userService.update(id, user);
-        if (response == null) return ResponseEntity.notFound().build();
         return ResponseEntity.ok().body(response);
     }
 
