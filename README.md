@@ -7,10 +7,13 @@
 #### Cadastro de usuários com as seguintes informações:
 
 ---
->id 
->Nome (name)
->Idade (age)
->Escritório (office - cargo ou empresa)
+> id 
+>
+> Nome (name)
+>
+> Idade (age)
+>
+> Escritório (office - cargo ou empresa)
 ---
 
 #### ENDPOINTS:
@@ -23,9 +26,11 @@
 ##### /create
 - Cria um novo usuário, necessita das seguintes informações:
 
->Nome (name)
->Idade (age)
->Escritório (office - cargo ou empresa)
+> Nome (name)
+>
+> Idade (age)
+>
+> Escritório (office - cargo ou empresa)
 
 ##### /update/{id}
 - Atualiza um usuário que contenha o mesmo valor de ID
