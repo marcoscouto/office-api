@@ -26,6 +26,8 @@ public class UserService {
     }
 
     public User save(User user) {
+        if(findAll().stream().count() > 50)
+            refreshDatabase();
         user.setId(null);
         return userRepository.save(user);
     }

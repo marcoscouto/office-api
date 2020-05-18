@@ -21,25 +21,25 @@ public class UserController {
         List<User> response = userService.findAll();
         if (response.isEmpty())
             return ResponseEntity.notFound().build();
-        return ResponseEntity.ok().body(response);
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping(value = "/user/{id}")
     public ResponseEntity<User> findById(@PathVariable UUID id) {
         User response = userService.findById(id);
-        return ResponseEntity.ok().body(response);
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping(value = "/create")
     public ResponseEntity<User> save(@RequestBody User user) {
         User response = userService.save(user);
-        return ResponseEntity.ok().body(response);
+        return ResponseEntity.status(201).body(response);
     }
 
     @PutMapping(value = "/update/{id}")
     public ResponseEntity<User> update(@PathVariable UUID id, @RequestBody User user) {
         User response = userService.update(id, user);
-        return ResponseEntity.ok().body(response);
+        return ResponseEntity.ok(response);
     }
 
     @DeleteMapping(value = "/delete/{id}")
@@ -49,9 +49,9 @@ public class UserController {
     }
 
     @GetMapping(value = "/refresh")
-    public ResponseEntity<Void> refreshDatabase() {
+    public ResponseEntity<String> refreshDatabase() {
         userService.refreshDatabase();
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok("Registros atualizados com sucesso!");
     }
 
 
